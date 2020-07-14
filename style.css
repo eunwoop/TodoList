@@ -1,0 +1,28 @@
+body {
+    font-size: 15px;
+}
+
+ul {
+    list-style-type: circle;
+    line-height: 180%;
+    font-weight: 200;
+}
+
+p {
+    font-weight: 500;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    flex: 1 0 0;
+    background-color: gainsboro;
+}
+
+.hori-line {
+    border-bottom: 1px solid gray;
+    width: 300px;
+    height: 1px;
+}

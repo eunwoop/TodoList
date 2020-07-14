@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <title>Mission 1</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>오늘의 할일</h1>
+    
+    <button id="delete-all-button" style="float:right;">delete all</button>
+    <button id="edit-button" style="float:right;">edit</button>
+
+    <input type="text" id="todo-input">
+    <button id="enter-button">enter</button>
+
+    <ul id="todo-list"></ul>
+
+    <div class="hori-line"></div>
+    <div class="flex-container"><p class='flex-item'>총 할일 수</p><p id='total-count' class='flex-item'></p></div>
+    <div class="flex-container"><p class='flex-item'>다 끝낸 할일 수</p><p id='complete-count' class='flex-item'></p></div>
+
+    <script type="text/javascript" src="LocalStorage.js"></script>
+    <script type="text/javascript" src="Utils.js"></script>
+    <script type="text/javascript" src="TodoCount.js"></script>
+    <script type="text/javascript" src="TodoList.js"></script>
+    <script type="text/javascript" src="TodoInput.js"></script>
+    <script type="text/javascript" src="App.js"></script>
+</body>
+</html> 
