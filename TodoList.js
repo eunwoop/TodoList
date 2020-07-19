@@ -1,23 +1,24 @@
 class TodoList {
-    constructor(element) {
+    constructor(element, user) {
         this.ListElement = element;
         this.editMode = false;
+        this.user = user;
     }
 
     getListLength() {
-        if (this.dataList == null || this.dataList.length === 0) {
+        if (this.dataList == null) {
             return 0;
         }
         return this.dataList.length;
     }
 
     getCompleteNum() {
-        if (this.dataList == null || this.dataList.length === 0) {
+        if (this.dataList == null || !isArray(this.dataList)) {
             return 0;
         }
         let completeNum = 0;
         this.dataList.forEach(element => {
-            if (element.isCompleted) {
+            if (element.isCompleted === false) {
                 completeNum++;
             }
         });
@@ -81,12 +82,19 @@ class TodoList {
     toggleComplete(data) {
         if (data != null) {
             data.isCompleted = !data.isCompleted;
+            updateData(data);
         }
         return data;
     }
 
     setState(newDataList) {
         try {
+            if (!isArray(newDataList)) {
+                console.error('newDataList is not an array');
+                console.error('typeof newDataList : ' + typeof newDataList);
+                console.error(newDataList);
+                return;
+            }
             newDataList.forEach(data => {
                 this.inputValidator(data);
             })
@@ -104,6 +112,7 @@ class TodoList {
                 this.dataList = [];
             }
             this.dataList.push(nextData);
+            sendToServer(nextData);
             this.onDataChanged();
         } catch (error) {
             console.error(error);

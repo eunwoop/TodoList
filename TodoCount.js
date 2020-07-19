@@ -1,13 +1,13 @@
 class TodoCount {
     constructor() {
         this.totalCount = document.getElementById('total-count');
-        this.completeCount = document.getElementById('complete-count');
+        this.unCompleteCount = document.getElementById('uncomplete-count');
     }
 
-    render(totalCount, completeCount) {
-        if (typeof totalCount === 'number' && typeof completeCount === 'number') {
+    render(totalCount, unCompleteCount) {
+        if (typeof totalCount === 'number' && typeof unCompleteCount === 'number') {
             this.totalCount.innerHTML = totalCount;
-            this.completeCount.innerHTML = completeCount;
+            this.unCompleteCount.innerHTML = unCompleteCount;
         }
     }
 }

@@ -38,6 +38,7 @@ class TodoInput {
     }
 
     setOnNewDataListener(listener) {
+        console.log('set on new data listener');
         this.onEnterListener = listener;
     }
 
