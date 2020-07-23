@@ -1,5 +1,5 @@
 const ENTER_KEY = 13;
-class TodoInput {
+export class TodoInput {
     constructor() {
         this.todoInput = document.getElementById('todo-input');
         this.enterButton = document.getElementById('enter-button');

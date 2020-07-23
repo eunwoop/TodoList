@@ -1,3 +1,5 @@
+import {login} from './Network';
+
 const loginButton = document.getElementById('login-button');
 const id = document.getElementById('id');
 const password = document.getElementById('password');

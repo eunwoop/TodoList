@@ -1,3 +1,4 @@
+import {AppInit} from './App.js'
 
 const user = GetURLParameter('id');
 console.log(user);

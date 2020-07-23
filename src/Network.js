@@ -70,3 +70,5 @@ async function login(id, password) {
 function deleteList() {
 
 }
+
+export {login, getAll, updateData,sendToServer};

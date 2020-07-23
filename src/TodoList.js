@@ -1,4 +1,7 @@
-class TodoList {
+import {sendToServer} from './Network';
+import {isArray} from './Utils';
+
+export class TodoList {
     constructor(element, user) {
         this.ListElement = element;
         this.editMode = false;

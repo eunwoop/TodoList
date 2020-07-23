@@ -1,4 +1,4 @@
-class TodoCount {
+export class TodoCount {
     constructor() {
         this.totalCount = document.getElementById('total-count');
         this.unCompleteCount = document.getElementById('uncomplete-count');

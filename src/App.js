@@ -1,12 +1,19 @@
+import {TodoCount} from './TodoCount';
+import {TodoList} from './TodoList';
+import {TodoInput} from './TodoInput';
+import {getCurrentDate} from './Date';
+import {getAll} from './Network';
+
 async function getDataFromServer() { 
     let serverTodoList = await getAll();
     console.log(serverTodoList);
     return serverTodoList.data;
 }
 
-async function AppInit(user) {
+export async function AppInit(user) {
     const todoListElem = document.querySelector('#todo-list');
     const todoInput = new TodoInput();
+    
     const todoCount = new TodoCount();
     const editButton = document.getElementById('edit-button');
     const deleteAllButton = document.getElementById('delete-all-button');
@@ -34,7 +41,6 @@ async function AppInit(user) {
             todoListElem.dispatchEvent(deleteAllEvent);
         }
     }
-    
     
     todoListElem.addEventListener('edit', () => {
         todoList.toggleEditMode();
