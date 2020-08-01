@@ -1,4 +1,4 @@
-import {login} from './Network';
+import {login} from './Api';
 
 const loginButton = document.getElementById('login-button');
 const id = document.getElementById('id');

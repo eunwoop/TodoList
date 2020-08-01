@@ -1,9 +1,10 @@
-import {AppInit} from './App.js'
+import {App} from './App.js'
 
 const user = GetURLParameter('id');
 console.log(user);
 console.log(decodeURI(user));
-AppInit(user);
+const app = new App(user);
+app.init();
 
 function GetURLParameter(sParam) {
     const sPageURL = window.location.search.substring(1);

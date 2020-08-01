@@ -24,14 +24,12 @@
  * 
  */
 
-const SERVER_URL = 'https://ec2-3-14-26-72.us-east-2.compute.amazonaws.com:8080';
+const SERVER_URL = 'http://ec2-3-14-26-72.us-east-2.compute.amazonaws.com:8080';
 function sendToServer(data) {
     console.log("send to server " + data);
     const url = SERVER_URL + '/task';
     console.log(data);
-    axios.post(url, data, {
-        httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-    })
+    axios.post(url, data)
         .then(response => console.log(response))
         .catch(error => 
             console.error(error)
@@ -69,8 +67,14 @@ async function login(id, password) {
     return response;
 }
 
-function deleteList() {
-
+/*
+ * 삭제
+ * DELETE /task/{id}
+ */
+async function deleteFromServer(data) {
+    const url = `${SERVER_URL}/task/${data.id}`;
+    const response = await axios.delete(url, data);
+    return response;
 }
 
-export {login, getAll, updateData,sendToServer};
+export {login, getAll, updateData, sendToServer, deleteFromServer};

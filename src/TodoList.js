@@ -1,5 +1,5 @@
-import {sendToServer} from './Network';
-import {isArray} from './Utils';
+import {sendToServer, updateData, deleteFromServer} from './Api';
+import {isArray, removeDataFromArray} from './Utils';
 
 export class TodoList {
     constructor(element, user) {
@@ -69,6 +69,7 @@ export class TodoList {
         deleteButton.onclick = () => {
             console.log(deleteButton.parentElement);
             this.dataList = removeDataFromArray(this.dataList, data);
+            deleteFromServer(data);
         }
         return deleteButton;
     }

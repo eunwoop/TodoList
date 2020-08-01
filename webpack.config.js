@@ -7,7 +7,7 @@ module.exports = {
 		login: path.join(__dirname, 'src', 'Login.js')
 	},
 	output: {
-		filename: process.env.NODE_ENV === 'production' ? '[name].bundle.js' : '[name].bundle-[hash:6].js',
+		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'static')
 	},
 	module: {
@@ -29,14 +29,4 @@ module.exports = {
 			],
 		}]
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			filename: path.join(__dirname, 'static', 'index.html'),
-			template: path.join(__dirname, 'static', 'index.html.template')
-		}),
-		new HtmlWebpackPlugin({
-			filename: path.join(__dirname, 'static', 'login.html'),
-			template: path.join(__dirname, 'static', 'login.html.template')
-		})
-	]
 };
