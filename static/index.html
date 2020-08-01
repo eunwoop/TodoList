@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <title>TASKIT</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="title">오늘의 할일</h1>
+        <div id="div-greeting">
+            <h2 id="greeting"></h2>
+        </div>
+    </header>
+
+    <section id="container">
+        <article>
+            <button id="delete-all-button" style="float:right;">전체 삭제</button>
+            <button id="edit-button" style="float:right;">삭제</button>
+
+            <!-- Trigger/Open The Modal -->
+            <button id="myBtn">할일 추가하기</button>
+
+            <!-- The Modal -->
+            <div id="input-window" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <input type="text" id="todo-input">
+                    <button id="enter-button">저장</button>
+                    <div>
+                        <button id="date-button">날짜지정</button>
+                        <button id="yoil-button">요일지정</button>
+                    </div>
+                    <div id="yoil-check" style="visibility: hidden;">
+                        <input type="checkbox" id="mon" name="mon">
+                        <label for="mon">월</label>
+                        <input type="checkbox" id="tue" name="tue">
+                        <label for="tue">화</label>
+                        <input type="checkbox" id="wed" name="wed">
+                        <label for="wed">수</label>
+                        <input type="checkbox" id="thu" name="thu">
+                        <label for="thu">목</label>
+                        <input type="checkbox" id="fri" name="fri">
+                        <label for="fri">금</label>
+                        <input type="checkbox" id="sat" name="sat">
+                        <label for="sat">토</label>
+                        <input type="checkbox" id="sun" name="sun">
+                        <label for="sun">일</label>
+                    </div>
+                    <div id="date-check" style="visibility: hidden;">
+                        <input type="date" id="calendar">
+                    </div>
+                </div>
+
+            </div>
+            <!-- The Modal -->
+            <ul id="todo-list"></ul>
+        </article>
+    </section>
+
+    <footer>
+        <div>
+            <span class='count-item'>총 할일 수 </span>
+            <span id='total-count' class='flex-item'></span>
+        </div>
+        <div>
+            <span class='count-item' style="color:red">남은 할일 수 </span>
+            <span id='uncomplete-count' style="color:red" class='flex-item'></span>
+        </div>
+
+        <p id='error-message' style="visibility: hidden;"></p>
+    </footer>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+    <script type="text/javascript" src="./index.bundle.js"></script>
+</body>
+
+</html>

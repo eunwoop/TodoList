@@ -41,11 +41,12 @@ export class App {
                     //setObjectToLocalStorage(todoList.dataList);
             });
             this.todoList.setState(savedTodoList);
-            this.todoInput.setOnNewDataListener((inputValue) => {
+            this.todoInput.setOnNewDataListener((inputValue, date) => {
                 const newData = {
                     text: inputValue,
                     isCompleted: false,
                     createdBy: this.user,
+                    dueDate: date,
                 }
                 this.todoList.addData(newData);
                 console.log(this.todoList);

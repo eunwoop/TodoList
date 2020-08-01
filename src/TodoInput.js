@@ -11,8 +11,9 @@ export class TodoInput {
         const dateButton = document.getElementById('date-button');
         const yoilButton = document.getElementById('yoil-button');
 
-        const yoilChecks = document.getElementById('date-checks');
-        const dateChecks = document.getElementById('calendar');
+        this.yoilCheck = document.getElementById('yoil-check');
+        this.dateCheck = document.getElementById('date-check');
+        this.calendar = document.getElementById('calendar');
 
     
         btn.onclick = function () {
@@ -29,22 +30,22 @@ export class TodoInput {
         this.addEnterListener();
 
         dateButton.onclick = () => {
-            if (dateChecks.style.visibility === 'visible') {
-                dateChecks.style.visibility = 'collapse';
+            if (this.dateCheck.style.visibility === 'visible') {
+                this.dateCheck.style.visibility = 'collapse';
             } else {
-                dateChecks.style.visibility = 'visible';
-                if (yoilChecks.style.visibility === 'visible') {
-                    yoilChecks.style.visibility = 'collapse';
+                this.dateCheck.style.visibility = 'visible';
+                if (this.yoilCheck.style.visibility === 'visible') {
+                    this.yoilCheck.style.visibility = 'collapse';
                 }
             }
         }
         yoilButton.onclick = () => {
-            if (yoilChecks.style.visibility === 'visible') {
-                yoilChecks.style.visibility = 'collapse';
+            if (this.yoilCheck.style.visibility === 'visible') {
+                this.yoilCheck.style.visibility = 'collapse';
             } else {
-                yoilChecks.style.visibility = 'visible';
-                if (dateChecks.style.visibility === 'visible') {
-                    dateChecks.style.visibility = 'collapse';
+                this.yoilCheck.style.visibility = 'visible';
+                if (this.dateCheck.style.visibility === 'visible') {
+                    this.dateCheck.style.visibility = 'collapse';
                 }
             }
         }
@@ -65,7 +66,8 @@ export class TodoInput {
     addEnterListener() {
         if (this.enterButton != null) {
             this.enterButton.onclick = () => {
-                this.onEnter(this.todoInput.value);
+                console.log("date " + this.calendar.value);
+                this.onEnter(this.todoInput.value, this.calendar.value);
             };
         }
         if (this.todoInput != null) {
@@ -86,10 +88,10 @@ export class TodoInput {
         this.todoInput.value = '';
     }
 
-    onEnter(value) {
+    onEnter(value, date) {
         if (this.validateInput(value)) {
             if (this.onEnterListener) {
-                this.onEnterListener(value);
+                this.onEnterListener(value, date);
             } else {
                 console.error("onEnterListener is undefined");
             }
