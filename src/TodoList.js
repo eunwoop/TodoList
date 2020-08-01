@@ -56,7 +56,7 @@ export class TodoList {
             todoItem.innerHTML = data.isCompleted ?
                 `<s>${data.text}</s>` : `${data.text}`;
             todoItem.id = data.id;
-            if (data.dueDate !== undefined) {
+            if (data.dueDate !== undefined && data.dueDate !== '') {
                 todoItem.appendChild(this.createDueDate(data.dueDate));
             }
             if (this.editMode) {
