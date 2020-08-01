@@ -69,6 +69,10 @@ footer {
     -webkit-flex-direction: column;
     flex-direction: column;
   }
+
+  #container {
+    width: 100%;
+  }
 }
 
 /* The Modal (background) */
