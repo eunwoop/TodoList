@@ -9,16 +9,24 @@
 
 <body>
     <header>
-        <h1 id="title">오늘의 할일</h1>
+        <h1 id="title">TASKIT</h1>
         <div id="div-greeting">
             <h2 id="greeting"></h2>
         </div>
     </header>
+    
 
     <section id="container">
+        <div class="tab">
+            <button class="tablinks">전부</button>
+            <button class="tablinks">오늘</button>
+            <button class="tablinks">내일</button>
+            <button class="tablinks">주간계획</button>
+        </div>
+        
         <article>
             <button id="delete-all-button" style="float:right;">전체 삭제</button>
-            <button id="edit-button" style="float:right;">삭제</button>
+            <button id="edit-button" style="float:right;">수정</button>
 
             <!-- Trigger/Open The Modal -->
             <button id="myBtn">할일 추가하기</button>

@@ -1,5 +1,5 @@
 import {sendToServer, updateData, deleteFromServer} from './Api';
-import {isArray, removeDataFromArray} from './Utils';
+import {isArray, removeDataFromArray, dateString} from './Utils';
 
 export class TodoList {
     constructor(element, user) {
@@ -56,6 +56,9 @@ export class TodoList {
             todoItem.innerHTML = data.isCompleted ?
                 `<s>${data.text}</s>` : `${data.text}`;
             todoItem.id = data.id;
+            if (data.dueDate !== undefined) {
+                todoItem.appendChild(this.createDueDate(data.dueDate));
+            }
             if (this.editMode) {
                 todoItem.appendChild(this.createDeleteButton(data));
             }
@@ -72,6 +75,19 @@ export class TodoList {
             deleteFromServer(data);
         }
         return deleteButton;
+    }
+
+    createDueDate(date) {
+        const dueDate = document.createElement('span');
+        dueDate.innerHTML = dateString(date);
+    
+        dueDate.style.fontSize = "10px";
+        dueDate.style.fontWeight = "100";
+        dueDate.style.backgroundColor = "#7ebc59";
+        dueDate.style.borderRadius = "10px";
+        dueDate.style.marginLeft = "10px";
+        dueDate.style.padding = "3px";
+        return dueDate;
     }
 
     createItemElem(data) {
