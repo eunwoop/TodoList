@@ -11,6 +11,7 @@ async function getDataFromServer() {
 }
 
 export async function AppInit(user) {
+    try {
     const todoListElem = document.querySelector('#todo-list');
     const todoInput = new TodoInput();
     
@@ -24,7 +25,12 @@ export async function AppInit(user) {
     title.innerHTML += ' ';
     title.innerHTML += getCurrentDate();
 
-    const savedTodoList = await getDataFromServer();
+    let savedTodoList;
+    try {
+        savedTodoList = await getDataFromServer();
+    } catch (e) {
+        throw e;
+    }
     const todoList = new TodoList(todoListElem, user);
 
     todoList.setOnDataChangedCallback(onAppDataChanged);
@@ -48,6 +54,12 @@ export async function AppInit(user) {
     todoListElem.addEventListener('deleteAll', () => {
         todoList.setState([]);
     });
+} catch(e) {
+    const failmessage = document.getElementById('error-message');
+        failmessage.innerHTML = e;
+        failmessage.style.visibility = 'visible';
+        console.error(e);
+}
     
     function onDataInput(inputValue) {
         const newData = {

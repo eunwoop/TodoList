@@ -4,6 +4,6 @@ export function getCurrentDate() {
     const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     const yyyy = today.getFullYear();
     
-    const todayStr = mm + '-' + dd + '-' + yyyy;
+    const todayStr = yyyy + '-' + mm + '-' + dd;
     return todayStr;
 }
