@@ -25,15 +25,18 @@
  */
 
 const SERVER_URL = 'http://ec2-3-14-26-72.us-east-2.compute.amazonaws.com:8080';
-function sendToServer(data) {
+
+async function sendToServer(data) {
     console.log("send to server " + data);
     const url = SERVER_URL + '/task';
-    console.log(data);
-    axios.post(url, data)
-        .then(response => console.log(response))
-        .catch(error => 
-            console.error(error)
-        );
+    let response;
+    try {
+        response = await axios.post(url, data);
+        console.log(response);
+    } catch(error){
+        console.error(error);
+    }
+    return response.data;
 }
 
 /*
@@ -45,6 +48,7 @@ function sendToServer(data) {
 */
 
 function updateData(data) {
+    console.log(data);
     const url = SERVER_URL + '/task/' + data.id;
     axios.patch(url, data);
 }

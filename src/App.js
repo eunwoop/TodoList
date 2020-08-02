@@ -52,14 +52,14 @@ export class App {
                     this.todoList.getCompleteNum());
                 //setObjectToLocalStorage(todoList.dataList);
         });
-        this.todoInput.setOnNewDataListener((inputValue, date) => {
+        this.todoInput.setOnNewDataListener(async (inputValue, date) => {
             const newData = {
                 text: inputValue,
                 isCompleted: false,
                 createdBy: this.user,
                 dueDate: date,
             }
-            this.todoList.addData(newData);
+            await this.todoList.addData(newData);
             console.log(this.todoList);
         });
 

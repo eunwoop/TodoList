@@ -126,14 +126,16 @@ export class TodoList {
         }
     }
 
-    addData(nextData) {
+    async addData(nextData) {
         try {
             this.inputValidator(nextData);
             if (this.dataList == null) {
                 this.dataList = [];
             }
+            
+            const id = await sendToServer(nextData);
+            nextData.id = id;
             this.dataList.push(nextData);
-            sendToServer(nextData);
             this.onDataChanged();
         } catch (error) {
             console.error(error);
