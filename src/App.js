@@ -1,8 +1,9 @@
 import { TodoCount } from './TodoCount';
 import { TodoList } from './TodoList';
 import { TodoInput } from './TodoInput';
-import { getCurrentDate } from './Date';
+import { getCurrentDate, isToday, isTomorrow } from './Date';
 import { getAll } from './Api';
+import { Tab, TAB_TYPE } from './Tab';
 
 async function getDataFromServer() {
     let serverTodoList = await getAll();
@@ -20,62 +21,87 @@ export class App {
 
         this.todoInput = new TodoInput();
         this.todoCount = new TodoCount();
+        this.todoList = new TodoList(this.todoListElem, user);
+        this.tab = new Tab();
 
-        this.title.innerHTML += ' ';
+        this.title.innerHTML += '\n';
         this.title.innerHTML += getCurrentDate();
     }
 
     async init() {
         try {
-            let savedTodoList;
-            savedTodoList = await getDataFromServer();
-            this.todoList = new TodoList(this.todoListElem, this.user);
+            // set callbacks.
+            this.setCallbacks();
 
-            console.log(this.todoList);
-
-            this.todoList.setOnDataChangedCallback(() => {
-                this.todoList.render();
-                this.todoInput.render();
-                this.todoCount.render(this.todoList.getListLength(),
-                        this.todoList.getCompleteNum());
-                    //setObjectToLocalStorage(todoList.dataList);
-            });
-            this.todoList.setState(savedTodoList);
-            this.todoInput.setOnNewDataListener((inputValue, date) => {
-                const newData = {
-                    text: inputValue,
-                    isCompleted: false,
-                    createdBy: this.user,
-                    dueDate: date,
-                }
-                this.todoList.addData(newData);
-                console.log(this.todoList);
-            });
-            this.todoList.onDataChanged();
-
-            this.editButton.onclick = () => {
-                this.todoListElem.dispatchEvent(new Event('edit'));
-            }
-            this.deleteAllButton.onclick = () => {
-                const dialog = confirm("모든 할일을 삭제 하시겠습니까? 복구되지 않습니다.");
-                if (dialog === true) {
-                    this.todoListElem.dispatchEvent(new Event('deleteAll'));
-                }
-            }
-
-            this.todoListElem.addEventListener('edit', () => {
-                this.todoList.toggleEditMode();
-            })
-            this.todoListElem.addEventListener('deleteAll', () => {
-                this.todoList.setState([]);
-                //TODO: delete everything.
-            });
+             /// get data from server
+             this.todoListFromServer = await getDataFromServer();
+            this.todoList.setState(this.todoListFromServer);
         } catch (e) {
             const failmessage = document.getElementById('error-message');
             failmessage.innerHTML = e;
             failmessage.style.visibility = 'visible';
             console.error(e);
         }
+    }
+
+    setCallbacks() {
+        this.todoList.setOnDataChangedCallback(() => {
+            this.todoList.render();
+            this.todoInput.render();
+            this.todoCount.render(this.todoList.getListLength(),
+                    this.todoList.getCompleteNum());
+                //setObjectToLocalStorage(todoList.dataList);
+        });
+        this.todoInput.setOnNewDataListener((inputValue, date) => {
+            const newData = {
+                text: inputValue,
+                isCompleted: false,
+                createdBy: this.user,
+                dueDate: date,
+            }
+            this.todoList.addData(newData);
+            console.log(this.todoList);
+        });
+
+        this.tab.setOnTabClickListener((e, tabType) => {
+            console.log(tabType);
+
+            switch(tabType) {
+                case TAB_TYPE.ALL_TAB:
+                    this.todoList.setState(this.todoListFromServer);
+                    break;
+                case TAB_TYPE.TODAY_TAB:
+                    this.todoList.setState(this.todoListFromServer.filter(
+                        element => isToday(element.dueDate)));
+                    break;
+                case TAB_TYPE.TOMOR_TAB:
+                    this.todoList.setState(this.todoListFromServer.filter(
+                        element => isTomorrow(element.dueDate)));
+                    break;
+                default:
+                    this.todoList.setState(this.todoListFromServer);
+                    break;
+
+            }
+        });
+
+        this.editButton.onclick = () => {
+            this.todoListElem.dispatchEvent(new Event('edit'));
+        }
+        this.deleteAllButton.onclick = () => {
+            const dialog = confirm("모든 할일을 삭제 하시겠습니까? 복구되지 않습니다.");
+            if (dialog === true) {
+                this.todoListElem.dispatchEvent(new Event('deleteAll'));
+            }
+        }
+        this.todoListElem.addEventListener('edit', () => {
+            this.todoList.toggleEditMode();
+        })
+        this.todoListElem.addEventListener('deleteAll', () => {
+            this.todoList.setState([]);
+            //TODO: delete everything.
+        });
+
     }
 }
 

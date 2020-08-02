@@ -36,6 +36,11 @@ header {
   color: #368cbf;
 }
 
+.tablinks:active {
+  background: #eaeaea;
+  color: #368cbf;
+}
+
 p {
   font-weight: 500;
 }

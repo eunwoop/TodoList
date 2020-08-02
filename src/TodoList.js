@@ -1,5 +1,6 @@
 import {sendToServer, updateData, deleteFromServer} from './Api';
-import {isArray, removeDataFromArray, dateString} from './Utils';
+import {isArray, removeDataFromArray} from './Utils';
+import {getDateString} from './Date';
 
 export class TodoList {
     constructor(element, user) {
@@ -79,7 +80,7 @@ export class TodoList {
 
     createDueDate(date) {
         const dueDate = document.createElement('span');
-        dueDate.innerHTML = dateString(date);
+        dueDate.innerHTML = getDateString(date);
     
         dueDate.style.fontSize = "10px";
         dueDate.style.fontWeight = "100";

@@ -7,3 +7,29 @@ export function getCurrentDate() {
     const todayStr = yyyy + '-' + mm + '-' + dd;
     return todayStr;
 }
+
+export function isToday(dateStr) {
+    const today = getCurrentDate();
+    dateStr = getDateString(dateStr);
+    console.log(dateStr);
+    return dateStr === today;
+}
+
+export function isTomorrow(dateStr) {
+    const today = new Date();
+    const dd = String(today.getDate()+1).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    const tomorrow = yyyy + '-' + mm + '-' + dd;
+
+    dateStr = getDateString(dateStr);
+    console.log(dateStr);
+    return dateStr === tomorrow;
+}
+
+export function getDateString(dateStr) {
+    if (dateStr === undefined || dateStr === null) {
+        return '';
+    }
+    return dateStr.substring(0, 10);
+}
