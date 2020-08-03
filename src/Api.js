@@ -77,7 +77,7 @@ async function login(id, password) {
  */
 async function deleteFromServer(data) {
     const url = `${SERVER_URL}/task/${data.id}`;
-    const response = await axios.delete(url, data);
+    const response = await axios.delete(url);
     return response;
 }
 

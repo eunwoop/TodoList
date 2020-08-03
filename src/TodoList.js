@@ -70,10 +70,12 @@ export class TodoList {
     createDeleteButton(data) {
         const deleteButton = document.createElement('button');
         deleteButton.innerHTML = '삭제';
-        deleteButton.onclick = () => {
+        deleteButton.onclick = (event) => {
             console.log(deleteButton.parentElement);
             this.dataList = removeDataFromArray(this.dataList, data);
             deleteFromServer(data);
+            event.stopPropagation();
+            this.onDataChanged();
         }
         return deleteButton;
     }
