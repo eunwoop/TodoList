@@ -81,8 +81,13 @@ export class App {
                 default:
                     this.todoList.setState(this.todoListFromServer);
                     break;
-
             }
+
+            const tablinks = document.getElementsByClassName('tablinks');
+            [...tablinks].forEach(element => {
+                element.className = element.className.replace(' active', '');
+            });
+            e.currentTarget.className += ' active';
         });
 
         this.editButton.onclick = () => {

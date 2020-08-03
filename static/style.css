@@ -31,12 +31,7 @@ header {
   margin-left: 30px;
 }
 
-.tablinks:hover {
-  background: #eaeaea;
-  color: #368cbf;
-}
-
-.tablinks:active {
+.tablinks.active {
   background: #eaeaea;
   color: #368cbf;
 }
