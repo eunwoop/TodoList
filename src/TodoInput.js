@@ -14,7 +14,8 @@ export class TodoInput {
         this.yoilCheck = document.getElementById('yoil-check');
         this.dateCheck = document.getElementById('date-check');
         this.calendar = document.getElementById('calendar');
-
+        this.todayButton = document.getElementById('today-button');
+        this.tomorButton = document.getElementById('tomor-button');
     
         btn.onclick = function () {
             modal.style.display = "block";
@@ -49,7 +50,30 @@ export class TodoInput {
                 }
             }
         }
-    }
+
+        this.todayButton.onclick = (e) => {
+            this.tomorButton.className = this.tomorButton.className.replace(' active', '');
+            if (!e.currentTarget.className.includes('active')) {
+                e.currentTarget.className += ' active';
+            }
+            console.log("today ");
+        }
+        this.tomorButton.onclick = (e) => {
+            this.todayButton.className = this.todayButton.className.replace(' active', '');
+            if (!e.currentTarget.className.includes('active')) {
+                e.currentTarget.className += ' active';
+            }
+            console.log("tomorrow ");
+        }
+        this.calendar.onclick = (e) => {
+            this.todayButton.className = this.todayButton.className.replace(' active', '');
+            this.tomorButton.className = this.tomorButton.className.replace(' active', '');
+            if (!e.currentTarget.className.includes('active')) {
+                e.currentTarget.className += ' active';
+            }
+            console.log("other ");
+        }
+     }
 
     validateInput(value) {
         if (value === '') {
@@ -66,8 +90,21 @@ export class TodoInput {
     addEnterListener() {
         if (this.enterButton != null) {
             this.enterButton.onclick = () => {
-                console.log("date " + this.calendar.value);
-                this.onEnter(this.todoInput.value, this.calendar.value);
+                let date;
+                if (this.todayButton.className.includes('active')) {
+                    date = Date.now();
+                    console.log("today " + date);
+                } else if (this.tomorButton.className.includes('active')) {
+                    const today = new Date();
+                    const tomorrow = new Date(today);
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    date = tomorrow;
+                    console.log('tomorrow' + date);
+                } else {
+                    console.log("date " + this.calendar.value);
+                    date = this.calendar.value;
+                }
+                this.onEnter(this.todoInput.value, date);
             };
         }
         if (this.todoInput != null) {
