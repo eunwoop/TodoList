@@ -5,3 +5,4 @@ output/
 /.idea
 /deploy
 /deploy.tar.gz
+/app.jar

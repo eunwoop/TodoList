@@ -1,11 +1,12 @@
 #!/bin/bash
 
-set -ex
-
-rm -rf deploy
-mkdir deploy
+set -e
 
 npm run build
-cp -r static deploy/
+cp -r static taskit/src/main/resources/
 
-tar -cvf deploy.tar.gz deploy
+pushd taskit
+./gradlew bootJar
+popd
+cp taskit/build/libs/taskit.jar ./app.jar
+

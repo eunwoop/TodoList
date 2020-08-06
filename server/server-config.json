@@ -1,4 +1,0 @@
-{
-  "listen": "0.0.0.0:8080",
-  "backend-server-url": "http://localhost:8081"
-}

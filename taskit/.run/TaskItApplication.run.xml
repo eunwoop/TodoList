@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TaskItApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="taskit.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.luckytak.taskit.TaskItApplication" />
+    <option name="ACTIVE_PROFILES" value="local" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
