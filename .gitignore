@@ -3,3 +3,6 @@ output/
 /static/*.bundle.*
 /static/*.bundle-*
 /.idea
+/deploy
+/deploy.tar.gz
+/app.jar

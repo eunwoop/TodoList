@@ -24,11 +24,9 @@
  * 
  */
 
-const SERVER_URL = 'http://ec2-3-14-26-72.us-east-2.compute.amazonaws.com:8080';
-
 async function sendToServer(data) {
     console.log("send to server " + data);
-    const url = SERVER_URL + '/task';
+    const url = '/task';
     let response;
     try {
         response = await axios.post(url, data);
@@ -49,13 +47,13 @@ async function sendToServer(data) {
 
 function updateData(data) {
     console.log(data);
-    const url = SERVER_URL + '/task/' + data.id;
+    const url = `/task/${data.id}`;
     axios.patch(url, data);
 }
 
 // GET /task/all
 async function getAll() {
-    const url = SERVER_URL + '/task/all';
+    const url = '/task/all';
     const response = await axios.get(url);
     return response;
 }
@@ -66,7 +64,7 @@ async function getAll() {
 * POST /login
 */
 async function login(id, password) {
-    const url = SERVER_URL + '/login';
+    const url = '/login';
     const response = await axios.post(url, {'user': id, 'pwd': password});
     return response;
 }
@@ -76,7 +74,7 @@ async function login(id, password) {
  * DELETE /task/{id}
  */
 async function deleteFromServer(data) {
-    const url = `${SERVER_URL}/task/${data.id}`;
+    const url = `/task/${data.id}`;
     const response = await axios.delete(url);
     return response;
 }
