@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+	mode: 'development',
 	entry: {
 		index: path.join(__dirname, 'src', 'index.js'),
 		login: path.join(__dirname, 'src', 'Login.js')
