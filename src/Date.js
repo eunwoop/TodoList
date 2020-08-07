@@ -8,6 +8,16 @@ export function getCurrentDate() {
     return todayStr;
 }
 
+export function getTomorrow() {
+    const today = new Date();
+    const dd = String(today.getDate()+1).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    const tomorrow = yyyy + '-' + mm + '-' + dd;
+
+    return tomorrow;
+}
+
 export function isToday(dateStr) {
     const today = getCurrentDate();
     dateStr = getDateString(dateStr);
@@ -16,12 +26,7 @@ export function isToday(dateStr) {
 }
 
 export function isTomorrow(dateStr) {
-    const today = new Date();
-    const dd = String(today.getDate()+1).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy = today.getFullYear();
-    const tomorrow = yyyy + '-' + mm + '-' + dd;
-
+    const tomorrow = getTomorrow();
     dateStr = getDateString(dateStr);
     console.log(dateStr);
     return dateStr === tomorrow;

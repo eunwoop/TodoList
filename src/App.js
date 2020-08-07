@@ -18,6 +18,7 @@ export class App {
         this.editButton = document.getElementById('edit-button');
         this.deleteAllButton = document.getElementById('delete-all-button');
         this.title = document.getElementById('title');
+        this.weeklyView = document.getElementById('weekly-view');
 
         this.todoInput = new TodoInput();
         this.todoCount = new TodoCount();
@@ -33,9 +34,9 @@ export class App {
             // set callbacks.
             this.setCallbacks();
 
-             /// get data from server
-             this.todoListFromServer = await getDataFromServer();
-            this.todoList.setState(this.todoListFromServer);
+            // get data from server
+            this.todoListData = await getDataFromServer();
+            this.todoList.setState(this.todoListData);
         } catch (e) {
             const failmessage = document.getElementById('error-message');
             failmessage.innerHTML = e;
@@ -46,6 +47,7 @@ export class App {
 
     setCallbacks() {
         this.todoList.setOnDataChangedCallback(() => {
+            console.log("onDataChanged !");
             this.todoList.render();
             this.todoInput.render();
             this.todoCount.render(this.todoList.getListLength(),
@@ -63,26 +65,24 @@ export class App {
             console.log(this.todoList);
         });
 
+        //TODO: move this to Tab.js
         this.tab.setOnTabClickListener((e, tabType) => {
-            console.log(tabType);
-
             switch(tabType) {
                 case TAB_TYPE.ALL_TAB:
-                    this.todoList.setState(this.todoListFromServer);
-                    break;
                 case TAB_TYPE.TODAY_TAB:
-                    this.todoList.setState(this.todoListFromServer.filter(
-                        element => isToday(element.dueDate)));
-                    break;
                 case TAB_TYPE.TOMOR_TAB:
-                    this.todoList.setState(this.todoListFromServer.filter(
-                        element => isTomorrow(element.dueDate)));
+                    this.todoListElem.style.visibility = 'visible';
+                    this.weeklyView.style.visibility = 'collapse';
+                    break;
+                case TAB_TYPE.WEEKLY_TAB:
+                    this.todoListElem.style.visibility = 'hidden';
+                    this.weeklyView.style.visibility = 'visible';
                     break;
                 default:
-                    this.todoList.setState(this.todoListFromServer);
                     break;
             }
 
+            this.todoList.onTabChanged(tabType);
             const tablinks = document.getElementsByClassName('tablinks');
             [...tablinks].forEach(element => {
                 element.className = element.className.replace(' active', '');

@@ -1,12 +1,14 @@
 import {sendToServer, updateData, deleteFromServer} from './Api';
 import {isArray, removeDataFromArray} from './Utils';
-import {getDateString} from './Date';
+import {getDateString, isTomorrow, isToday} from './Date';
+import {TAB_TYPE} from './Tab';
 
 export class TodoList {
     constructor(element, user) {
         this.ListElement = element;
         this.editMode = false;
         this.user = user;
+        this.currentTab = TAB_TYPE.ALL_TAB;
     }
 
     getListLength() {
@@ -52,7 +54,24 @@ export class TodoList {
         if (this.dataList == null || this.dataList.length === 0) {
             return;
         }
-        this.dataList.forEach((data) => {
+
+        switch(this.currentTab) {
+            case TAB_TYPE.ALL_TAB:
+                this.currentTabDataList = this.dataList;
+                break;
+            case TAB_TYPE.TODAY_TAB:
+                this.currentTabDataList = this.dataList.filter(
+                    element => isToday(element.dueDate));
+                break;
+            case TAB_TYPE.TOMOR_TAB:
+                this.currentTabDataList = this.dataList.filter(
+                    element => isTomorrow(element.dueDate));
+                break;
+            default:
+                break;
+        }
+
+        this.currentTabDataList.forEach((data) => {
             const todoItem = this.createItemElem(data);
             todoItem.innerHTML = data.isCompleted ?
                 `<s>${data.text}</s>` : `${data.text}`;
@@ -74,22 +93,34 @@ export class TodoList {
             console.log(deleteButton.parentElement);
             this.dataList = removeDataFromArray(this.dataList, data);
             deleteFromServer(data);
-            event.stopPropagation();
-            this.onDataChanged();
+            event.stopPropaxgation();
+            this.render();
         }
         return deleteButton;
     }
 
+    //TODO: declare in CSS class.
     createDueDate(date) {
         const dueDate = document.createElement('span');
-        dueDate.innerHTML = getDateString(date);
-    
+        let dateStr = getDateString(date);
+        if (isToday(dateStr)){
+            dateStr = '오늘';
+            dueDate.style.color = "#ffffff";
+            dueDate.style.backgroundColor = "#900d09";
+        } else if (isTomorrow(dateStr)) {
+            dateStr = '내일';
+            dueDate.style.backgroundColor = "#7ebc59";
+        } else {
+            dueDate.style.backgroundColor = "#ffffff";
+        }
+
+        dueDate.innerHTML = dateStr;
         dueDate.style.fontSize = "10px";
         dueDate.style.fontWeight = "100";
-        dueDate.style.backgroundColor = "#7ebc59";
         dueDate.style.borderRadius = "10px";
         dueDate.style.marginLeft = "10px";
         dueDate.style.padding = "3px";
+
         return dueDate;
     }
 
@@ -121,6 +152,8 @@ export class TodoList {
             newDataList.forEach(data => {
                 this.inputValidator(data);
             })
+            console.log("setSTATE");
+            console.log(newDataList);
             this.dataList = newDataList;
             this.onDataChanged();
         } catch (error) {
@@ -146,10 +179,15 @@ export class TodoList {
 
     toggleEditMode() {
         this.editMode = !this.editMode;
-        this.onDataChanged();
+        this.render();
     }
 
     setOnDataChangedCallback(callback) {
         this.onDataChanged = callback;
+    }
+
+    onTabChanged(tabType) {
+        this.currentTab = tabType;
+        this.render();
     }
 }

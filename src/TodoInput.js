@@ -1,3 +1,5 @@
+import { getTomorrow, getCurrentDate } from "./Date";
+
 const ENTER_KEY = 13;
 export class TodoInput {
     constructor() {
@@ -56,14 +58,12 @@ export class TodoInput {
             if (!e.currentTarget.className.includes('active')) {
                 e.currentTarget.className += ' active';
             }
-            console.log("today ");
         }
         this.tomorButton.onclick = (e) => {
             this.todayButton.className = this.todayButton.className.replace(' active', '');
             if (!e.currentTarget.className.includes('active')) {
                 e.currentTarget.className += ' active';
             }
-            console.log("tomorrow ");
         }
         this.calendar.onclick = (e) => {
             this.todayButton.className = this.todayButton.className.replace(' active', '');
@@ -71,7 +71,6 @@ export class TodoInput {
             if (!e.currentTarget.className.includes('active')) {
                 e.currentTarget.className += ' active';
             }
-            console.log("other ");
         }
      }
 
@@ -92,16 +91,10 @@ export class TodoInput {
             this.enterButton.onclick = () => {
                 let date;
                 if (this.todayButton.className.includes('active')) {
-                    date = Date.now();
-                    console.log("today " + date);
+                    date = getCurrentDate();
                 } else if (this.tomorButton.className.includes('active')) {
-                    const today = new Date();
-                    const tomorrow = new Date(today);
-                    tomorrow.setDate(tomorrow.getDate() + 1);
-                    date = tomorrow;
-                    console.log('tomorrow' + date);
+                    date = getTomorrow();
                 } else {
-                    console.log("date " + this.calendar.value);
                     date = this.calendar.value;
                 }
                 this.onEnter(this.todoInput.value, date);
