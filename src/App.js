@@ -19,14 +19,24 @@ export class App {
         this.deleteAllButton = document.getElementById('delete-all-button');
         this.title = document.getElementById('title');
         this.weeklyView = document.getElementById('weekly-view');
+        this.getWeekDom();
 
         this.todoInput = new TodoInput();
         this.todoCount = new TodoCount();
-        this.todoList = new TodoList(this.todoListElem, user);
+        this.todoList = new TodoList(this.todoListElem, this.weekUlElements, user);
         this.tab = new Tab();
 
         this.title.innerHTML += '\n';
         this.title.innerHTML += getCurrentDate();
+    }
+
+    getWeekDom() {
+        const idPrefix = 'weekly-todo-list-';
+        this.weekUlElements = [];
+        const WEEK_STRING = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+        WEEK_STRING.forEach(element => {
+            this.weekUlElements.push(document.getElementById(idPrefix + element));
+        });
     }
 
     async init() {
@@ -75,7 +85,7 @@ export class App {
                     this.weeklyView.style.visibility = 'collapse';
                     break;
                 case TAB_TYPE.WEEKLY_TAB:
-                    this.todoListElem.style.visibility = 'hidden';
+                    this.todoListElem.style.visibility = 'collapse';
                     this.weeklyView.style.visibility = 'visible';
                     break;
                 default:

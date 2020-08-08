@@ -1,11 +1,12 @@
 import {sendToServer, updateData, deleteFromServer} from './Api';
 import {isArray, removeDataFromArray} from './Utils';
-import {getDateString, isTomorrow, isToday} from './Date';
+import {getDateString, isTomorrow, isToday, getThisWeekDates} from './Date';
 import {TAB_TYPE} from './Tab';
 
 export class TodoList {
-    constructor(element, user) {
-        this.ListElement = element;
+    constructor(listElement, weekUlElements, user) {
+        this.ListElement = listElement;
+        this.weekUlElements = weekUlElements;
         this.editMode = false;
         this.user = user;
         this.currentTab = TAB_TYPE.ALL_TAB;
@@ -55,35 +56,71 @@ export class TodoList {
             return;
         }
 
+        let currentTabDataList;
         switch(this.currentTab) {
             case TAB_TYPE.ALL_TAB:
-                this.currentTabDataList = this.dataList;
+                currentTabDataList = this.dataList;
+                this.drawList(currentTabDataList);
                 break;
             case TAB_TYPE.TODAY_TAB:
-                this.currentTabDataList = this.dataList.filter(
+                currentTabDataList = this.dataList.filter(
                     element => isToday(element.dueDate));
+                this.drawList(currentTabDataList);
                 break;
             case TAB_TYPE.TOMOR_TAB:
-                this.currentTabDataList = this.dataList.filter(
+                currentTabDataList = this.dataList.filter(
                     element => isTomorrow(element.dueDate));
+                this.drawList(currentTabDataList);
+                break;
+            case TAB_TYPE.WEEKLY_TAB:
+                this.drawWeeklyTab();
                 break;
             default:
                 break;
         }
+    }
 
-        this.currentTabDataList.forEach((data) => {
+    drawList(currentTabDataList, listElement) {
+        console.log("draw list");
+        console.log("currentTabDataList: " + currentTabDataList);
+        
+        currentTabDataList.forEach((data) => {
             const todoItem = this.createItemElem(data);
             todoItem.innerHTML = data.isCompleted ?
                 `<s>${data.text}</s>` : `${data.text}`;
             todoItem.id = data.id;
-            if (data.dueDate !== undefined && data.dueDate !== '') {
+            if (data.dueDate !== undefined && data.dueDate !== '' &&
+                this.currentTab === TAB_TYPE.ALL_TAB) {
                 todoItem.appendChild(this.createDueDate(data.dueDate));
             }
             if (this.editMode) {
                 todoItem.appendChild(this.createDeleteButton(data));
             }
-            this.ListElement.append(todoItem);
+            // not weekly tab.
+            if (listElement === undefined) {
+                this.ListElement.append(todoItem);
+            } else {
+                console.log("append" + todoItem);
+                listElement.append(todoItem);
+            }
         });
+    }
+
+    drawWeeklyTab() {
+        console.log("draw weekly tab");
+        let weekDates = getThisWeekDates();
+        let weekTabDataLists = [];
+        for (let i = 0; i < 7; i++) {
+            console.log(this.dataList);
+            console.log(weekDates[i]);
+
+            weekTabDataLists[i] = this.dataList.filter(
+                 element => getDateString(element.dueDate) === weekDates[i]);
+
+            console.log("weekTabDataLists[i]: " + weekTabDataLists[i]);
+            this.weekUlElements[i].innerHTML = '';
+            this.drawList(weekTabDataLists[i], this.weekUlElements[i]);
+        }
     }
 
     createDeleteButton(data) {
@@ -152,7 +189,6 @@ export class TodoList {
             newDataList.forEach(data => {
                 this.inputValidator(data);
             })
-            console.log("setSTATE");
             console.log(newDataList);
             this.dataList = newDataList;
             this.onDataChanged();

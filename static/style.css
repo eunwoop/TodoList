@@ -154,8 +154,14 @@ footer {
     align-items: stretch;
   }
   .day-in-weekly {
-    background-color: greenyellow;
+    background-color: white;
     border : 1px black;
     margin: 3px;
     flex-grow: 1;
+  }
+
+  .weekly-todo-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 3px;
   }
