@@ -16,7 +16,6 @@ export class App {
         this.user = user;
         this.todoListElem = document.querySelector('#todo-list');
         this.editButton = document.getElementById('edit-button');
-        this.deleteAllButton = document.getElementById('delete-all-button');
         this.title = document.getElementById('title');
         this.weeklyView = document.getElementById('weekly-view');
         this.getWeekDom();
@@ -103,20 +102,9 @@ export class App {
         this.editButton.onclick = () => {
             this.todoListElem.dispatchEvent(new Event('edit'));
         }
-        this.deleteAllButton.onclick = () => {
-            const dialog = confirm("모든 할일을 삭제 하시겠습니까? 복구되지 않습니다.");
-            if (dialog === true) {
-                this.todoListElem.dispatchEvent(new Event('deleteAll'));
-            }
-        }
         this.todoListElem.addEventListener('edit', () => {
             this.todoList.toggleEditMode();
         })
-        this.todoListElem.addEventListener('deleteAll', () => {
-            this.todoList.setState([]);
-            //TODO: delete everything.
-        });
-
     }
 }
 
