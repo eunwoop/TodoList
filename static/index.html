@@ -14,6 +14,41 @@
             <h2 id="greeting"></h2>
         </div>
     </header>
+    <!-- The Modal -->
+    <div id="input-window" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" id="todo-input">
+            <button id="enter-button">저장</button>
+            <div>
+                <button id="date-button">날짜지정</button>
+                <button id="yoil-button">요일지정</button>
+            </div>
+            <div id="yoil-check" style="visibility: hidden;">
+                <input type="checkbox" id="mon" name="mon">
+                <label for="mon">월</label>
+                <input type="checkbox" id="tue" name="tue">
+                <label for="tue">화</label>
+                <input type="checkbox" id="wed" name="wed">
+                <label for="wed">수</label>
+                <input type="checkbox" id="thu" name="thu">
+                <label for="thu">목</label>
+                <input type="checkbox" id="fri" name="fri">
+                <label for="fri">금</label>
+                <input type="checkbox" id="sat" name="sat">
+                <label for="sat">토</label>
+                <input type="checkbox" id="sun" name="sun">
+                <label for="sun">일</label>
+            </div>
+            <div id="date-check" style="visibility: hidden;">
+                <button id="today-button" class="datebuttons">오늘</button>
+                <button id="tomor-button" class="datebuttons">내일</button>
+                <input type="date" id="calendar">
+            </div>
+        </div>
+    </div>
+    <!-- The Modal -->
     <section id="container">
         <div class="tab">
             <button class="tablinks" id="all-tab">전부</button>
@@ -21,94 +56,55 @@
             <button class="tablinks" id="tomor-tab">내일</button>
             <button class="tablinks" id="weekly-tab">주간계획</button>
         </div>
-        
         <article>
             <button id="edit-button" style="float:right;">수정</button>
 
             <!-- Trigger/Open The Modal -->
             <button id="myBtn">할일 추가하기</button>
-
-            <!-- The Modal -->
-            <div id="input-window" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <input type="text" id="todo-input">
-                    <button id="enter-button">저장</button>
-                    <div>
-                        <button id="date-button">날짜지정</button>
-                        <button id="yoil-button">요일지정</button>
-                    </div>
-                    <div id="yoil-check" style="visibility: hidden;">
-                        <input type="checkbox" id="mon" name="mon">
-                        <label for="mon">월</label>
-                        <input type="checkbox" id="tue" name="tue">
-                        <label for="tue">화</label>
-                        <input type="checkbox" id="wed" name="wed">
-                        <label for="wed">수</label>
-                        <input type="checkbox" id="thu" name="thu">
-                        <label for="thu">목</label>
-                        <input type="checkbox" id="fri" name="fri">
-                        <label for="fri">금</label>
-                        <input type="checkbox" id="sat" name="sat">
-                        <label for="sat">토</label>
-                        <input type="checkbox" id="sun" name="sun">
-                        <label for="sun">일</label>
-                    </div>
-                    <div id="date-check" style="visibility: hidden;">
-                        <button id="today-button" class="datebuttons">오늘</button>
-                        <button id="tomor-button" class="datebuttons">내일</button>
-                        <input type="date" id="calendar">
-                    </div>
-                </div>
-
-            </div>
-            <!-- The Modal -->
             <ul id="todo-list"></ul>
             <div id="weekly-view" class="weekly-container" style="visibility: hidden;">
-
-             <div id="mon" class="day-in-weekly">
-                 <text>
-                     월
-                 </text>
-                 <ul id="weekly-todo-list-mon" class="weekly-todo-list"></ul>
-             </div>
-             <div id="tue" class="day-in-weekly">
-                <text>
-                    화
-                </text>
-                <ul id="weekly-todo-list-tue" class="weekly-todo-list"></ul>
-             </div>
-             <div id="wed" class="day-in-weekly">
-                <text>
-                    수
-                </text>
-                <ul id="weekly-todo-list-wed" class="weekly-todo-list"></ul>
-             </div>
-             <div id="thu" class="day-in-weekly">
-                <text>
-                    목
-                </text>
-                <ul id="weekly-todo-list-thu" class="weekly-todo-list"></ul>
-             </div>
-             <div id="fri" class="day-in-weekly">
-                <text>
-                    금
-                </text>
-                <ul id="weekly-todo-list-fri" class="weekly-todo-list"></ul>
-             </div>
-             <div id="sat" class="day-in-weekly">
-                <text>
-                    토
-                </text>
-                <ul id="weekly-todo-list-sat" class="weekly-todo-list"></ul>
-             </div>
-             <div id="sun" class="day-in-weekly">
-                <text>
-                    일
-                </text>
-                <ul id="weekly-todo-list-sun" class="weekly-todo-list"></ul>
-             </div>
+                <div id="mon" class="day-in-weekly">
+                    <text>
+                        월
+                    </text>
+                    <ul id="weekly-todo-list-mon" class="weekly-todo-list"></ul>
+                </div>
+                <div id="tue" class="day-in-weekly">
+                    <text>
+                        화
+                    </text>
+                    <ul id="weekly-todo-list-tue" class="weekly-todo-list"></ul>
+                </div>
+                <div id="wed" class="day-in-weekly">
+                    <text>
+                        수
+                    </text>
+                    <ul id="weekly-todo-list-wed" class="weekly-todo-list"></ul>
+                </div>
+                <div id="thu" class="day-in-weekly">
+                    <text>
+                        목
+                    </text>
+                    <ul id="weekly-todo-list-thu" class="weekly-todo-list"></ul>
+                </div>
+                <div id="fri" class="day-in-weekly">
+                    <text>
+                        금
+                    </text>
+                    <ul id="weekly-todo-list-fri" class="weekly-todo-list"></ul>
+                </div>
+                <div id="sat" class="day-in-weekly">
+                    <text>
+                        토
+                    </text>
+                    <ul id="weekly-todo-list-sat" class="weekly-todo-list"></ul>
+                </div>
+                <div id="sun" class="day-in-weekly">
+                    <text>
+                        일
+                    </text>
+                    <ul id="weekly-todo-list-sun" class="weekly-todo-list"></ul>
+                </div>
 
             </div>
         </article>
