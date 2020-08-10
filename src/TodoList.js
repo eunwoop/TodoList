@@ -81,9 +81,6 @@ export class TodoList {
     }
 
     drawList(currentTabDataList, listElement) {
-        console.log("draw list");
-        console.log("currentTabDataList: " + currentTabDataList);
-        
         currentTabDataList.forEach((data) => {
             const todoItem = this.createItemElem(data);
             todoItem.innerHTML = data.isCompleted ?
@@ -107,17 +104,15 @@ export class TodoList {
     }
 
     drawWeeklyTab() {
-        console.log("draw weekly tab");
         let weekDates = getThisWeekDates();
         let weekTabDataLists = [];
         for (let i = 0; i < 7; i++) {
-            console.log(this.dataList);
-            console.log(weekDates[i]);
-
-            weekTabDataLists[i] = this.dataList.filter(
-                 element => getDateString(element.dueDate) === weekDates[i]);
-
-            console.log("weekTabDataLists[i]: " + weekTabDataLists[i]);
+            weekTabDataLists[i] = [];
+            this.dataList.forEach((e)=>{
+                if (getDateString(e.dueDate) === weekDates[i]) {
+                    weekTabDataLists[i].push(e);
+                }
+            })
             this.weekUlElements[i].innerHTML = '';
             this.drawList(weekTabDataLists[i], this.weekUlElements[i]);
         }

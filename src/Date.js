@@ -21,14 +21,12 @@ export function getTomorrow() {
 export function isToday(dateStr) {
     const today = getCurrentDate();
     dateStr = getDateString(dateStr);
-    console.log(dateStr);
     return dateStr === today;
 }
 
 export function isTomorrow(dateStr) {
     const tomorrow = getTomorrow();
     dateStr = getDateString(dateStr);
-    console.log(dateStr);
     return dateStr === tomorrow;
 }
 
@@ -40,7 +38,7 @@ export function getDateString(dateStr) {
 }
 
 export function getThisWeekDates() {
-    let startOfWeek = moment().startOf('week').subtract(7, 'd');
+    let startOfWeek = moment().startOf('isoWeek').subtract(1, 'd');
     let thisWeekDay = [];
     for (let i = 0; i < 7; i++) {
         thisWeekDay.push(startOfWeek.add(1, 'd').format('YYYY-MM-DD'));

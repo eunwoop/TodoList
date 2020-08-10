@@ -18,6 +18,8 @@ export class App {
         this.editButton = document.getElementById('edit-button');
         this.title = document.getElementById('title');
         this.weeklyView = document.getElementById('weekly-view');
+        this.weeklyDay = document.querySelectorAll('.day-in-weekly');
+
         this.getWeekDom();
 
         this.todoInput = new TodoInput();
@@ -107,6 +109,8 @@ export class App {
         })
     }
 }
+
+
 
 //validator test
 // new TodoList(todoElement, null);

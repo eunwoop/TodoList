@@ -7,7 +7,8 @@ export class TodoInput {
         this.enterButton = document.getElementById('enter-button');
 
         const modal = document.getElementById("input-window");
-        const btn = document.getElementById("myBtn");
+        const addBtn = document.getElementById("add-todo-button");
+        const weeklyDay = document.querySelectorAll('.day-in-weekly');
         const span = document.getElementsByClassName("close")[0];
 
         const dateButton = document.getElementById('date-button');
@@ -19,9 +20,16 @@ export class TodoInput {
         this.todayButton = document.getElementById('today-button');
         this.tomorButton = document.getElementById('tomor-button');
     
-        btn.onclick = function () {
+        addBtn.onclick = function () {
             modal.style.display = "block";
         }
+        console.log("weeklyDay: ");
+        console.log(weeklyDay);
+        weeklyDay.forEach((element) => element.onclick = function () {
+            console.log("click weekly day.,..");
+            modal.style.display = "block";
+        });
+
         span.onclick = function () {
             modal.style.display = "none";
         }
