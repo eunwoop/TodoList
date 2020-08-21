@@ -92,7 +92,8 @@ export class App {
             }
 
             this.todoList.onTabChanged(tabType);
-            const tablinks = document.getElementsByClassName('tablinks');
+            const tablinks = document.getElementsByClassName('nav-item');
+
             [...tablinks].forEach(element => {
                 element.className = element.className.replace(' active', '');
             });

@@ -4,6 +4,12 @@
     <title>TASKIT</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,53 +29,74 @@
             <p id='error-message' style="visibility: hidden;"></p>
         </div>
     </header>
+    
     <!-- The Modal -->
-    <div id="input-window" class="modal">
+    <div id="input-window" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <input type="text" id="todo-input">
-            <button id="enter-button">저장</button>
-            <div>
-                <button id="date-button">날짜지정</button>
-                <button id="yoil-button">요일지정</button>
-            </div>
-            <div id="yoil-check" style="visibility: hidden;">
-                <input type="checkbox" id="mon" name="mon">
-                <label for="mon">월</label>
-                <input type="checkbox" id="tue" name="tue">
-                <label for="tue">화</label>
-                <input type="checkbox" id="wed" name="wed">
-                <label for="wed">수</label>
-                <input type="checkbox" id="thu" name="thu">
-                <label for="thu">목</label>
-                <input type="checkbox" id="fri" name="fri">
-                <label for="fri">금</label>
-                <input type="checkbox" id="sat" name="sat">
-                <label for="sat">토</label>
-                <input type="checkbox" id="sun" name="sun">
-                <label for="sun">일</label>
-            </div>
-            <div id="date-check" style="visibility: hidden;">
-                <button id="today-button" class="datebuttons">오늘</button>
-                <button id="tomor-button" class="datebuttons">내일</button>
-                <input type="date" id="calendar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">할일 입력하기</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="todo-input">
+                    <div>
+                        <button id="date-button">날짜지정</button>
+                        <button id="yoil-button">요일지정</button>
+                    </div>
+                    <div id="yoil-check" style="visibility: hidden;">
+                        <input type="checkbox" id="mon" name="mon">
+                        <label for="mon">월</label>
+                        <input type="checkbox" id="tue" name="tue">
+                        <label for="tue">화</label>
+                        <input type="checkbox" id="wed" name="wed">
+                        <label for="wed">수</label>
+                        <input type="checkbox" id="thu" name="thu">
+                        <label for="thu">목</label>
+                        <input type="checkbox" id="fri" name="fri">
+                        <label for="fri">금</label>
+                        <input type="checkbox" id="sat" name="sat">
+                        <label for="sat">토</label>
+                        <input type="checkbox" id="sun" name="sun">
+                        <label for="sun">일</label>
+                    </div>
+                    <div id="date-check" style="visibility: hidden;">
+                        <button id="today-button" class="datebuttons">오늘</button>
+                        <button id="tomor-button" class="datebuttons">내일</button>
+                        <input type="date" id="calendar">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="enter-button" class="btn btn-primary">저장</button>
+                </div>
             </div>
         </div>
     </div>
     <!-- The Modal -->
     <section id="container">
-        <div class="tab">
-            <button class="tablinks" id="weekly-tab">주간계획</button>
-            <button class="tablinks" id="today-tab">오늘</button>
-            <button class="tablinks" id="tomor-tab">내일</button>
-            <button class="tablinks" id="all-tab">전부</button>
-        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item" id="weekly-tab">
+                <a class="nav-link active" data-toggle="tab">주간계획</a>
+            </li>
+            <li class="nav-item" id="today-tab">
+                <a class="nav-link" data-toggle="tab">오늘</a>
+            </li>
+            <li class="nav-item" id="tomor-tab">
+                <a class="nav-link" data-toggle="tab">내일</a>
+            </li>
+            <li class="nav-item" id="all-tab">
+                <a class="nav-link" data-toggle="tab">전부</a>
+            </li>
+        </ul>
         <article>
-            <button id="edit-button" style="float:right;">수정</button>
+            <button id="edit-button" class="btn btn-danger" style="float:right;">수정</button>
 
             <!-- Trigger/Open The Modal -->
-            <button id="add-todo-button">할일 추가하기</button>
+            <button id="add-todo-button" class="btn btn-success" data-toggle="modal"
+            data-target="#input-window">할일 추가하기</button>
+            
             <ul id="todo-list"></ul>
             <div id="weekly-view" class="weekly-container">
                 <div id="mon" class="day-in-weekly">
@@ -104,7 +131,10 @@
         </article>
     </section>
 
-    
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
     <script type="text/javascript" src="https://momentjs.com/downloads/moment.min.js"></script>
