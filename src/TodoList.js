@@ -9,27 +9,31 @@ export class TodoList {
         this.weekUlElements = weekUlElements;
         this.editMode = false;
         this.user = user;
-        this.currentTab = TAB_TYPE.ALL_TAB;
+        this.currentTab = TAB_TYPE.WEEKLY_TAB;
     }
 
-    getListLength() {
-        if (this.dataList == null) {
+    getTotalListLength() {
+        if (this.dataList == null || !isArray(this.dataList)) {
             return 0;
         }
         return this.dataList.length;
     }
 
-    getCompleteNum() {
+    getTodayListLength() {
+        const todayList = this.dataList.filter(
+            element => isToday(element.dueDate));
+
+        return todayList.length;
+    }
+
+    getUnCompleteNum() {
         if (this.dataList == null || !isArray(this.dataList)) {
             return 0;
         }
-        let completeNum = 0;
-        this.dataList.forEach(element => {
-            if (element.isCompleted === false) {
-                completeNum++;
-            }
-        });
-        return completeNum;
+        const todayUnCompleteDataList = this.dataList.filter(
+            element => isToday(element.dueDate) && element.isCompleted === false);
+        
+        return todayUnCompleteDataList.length;;
     }
 
     inputValidator(data) {
@@ -104,6 +108,7 @@ export class TodoList {
     }
 
     drawWeeklyTab() {
+        console.log("drawWeeklyTab!");
         let weekDates = getThisWeekDates();
         let weekTabDataLists = [];
         for (let i = 0; i < 7; i++) {

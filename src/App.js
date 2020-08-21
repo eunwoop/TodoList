@@ -41,7 +41,6 @@ export class App {
 
     async init() {
         try {
-            // set callbacks.
             this.setCallbacks();
 
             // get data from server
@@ -60,8 +59,8 @@ export class App {
             console.log("onDataChanged !");
             this.todoList.render();
             this.todoInput.render();
-            this.todoCount.render(this.todoList.getListLength(),
-                    this.todoList.getCompleteNum());
+            this.todoCount.render(this.todoList.getTodayListLength(),
+                    this.todoList.getUnCompleteNum());
                 //setObjectToLocalStorage(todoList.dataList);
         });
         this.todoInput.setOnNewDataListener(async (inputValue, date) => {

@@ -12,7 +12,7 @@ body {
 
 /* Style the header */
 header {
-  padding: 30px;
+  padding-top: 30px;
   text-align: center;
   font-size: 20px;
   color: white;
@@ -74,12 +74,9 @@ article ul {
     font-weight: 200;
 }
 
-/* Style the footer */
-footer {
+.counts {
   width: 100%;
   background-color: black;
-  position: absolute;
-  bottom: 0;
   padding: 10px;
   text-align: center;
   color: white;
@@ -140,14 +137,9 @@ footer {
     cursor: pointer;
   }
 
-  #myBtn {
-    background-color:white;
-    border-radius: 16px;
-  }
-
-  #myBtn:hover {
-    background-color:#368cbf;
-    color:white;
+  #add-todo-button {
+    background-color:green;
+    color: white;
   }
 
   .datebuttons {
