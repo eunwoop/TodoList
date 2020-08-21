@@ -163,11 +163,14 @@ footer {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: stretch;
+    flex-wrap: wrap;
+    align-content: stretch;
   }
   .day-in-weekly {
     background-color: white;
     border : 1px black;
     margin: 3px;
+    flex-basis: 90px;
     flex-grow: 1;
   }
 

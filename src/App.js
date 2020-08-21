@@ -18,7 +18,6 @@ export class App {
         this.editButton = document.getElementById('edit-button');
         this.title = document.getElementById('title');
         this.weeklyView = document.getElementById('weekly-view');
-        this.weeklyDay = document.querySelectorAll('.day-in-weekly');
 
         this.getWeekDom();
 
@@ -27,8 +26,8 @@ export class App {
         this.todoList = new TodoList(this.todoListElem, this.weekUlElements, user);
         this.tab = new Tab();
 
-        this.title.innerHTML += '\n';
-        this.title.innerHTML += getCurrentDate();
+        // set title
+        document.querySelector('#greeting').innerHTML = getCurrentDate();
     }
 
     getWeekDom() {
