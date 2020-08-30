@@ -75,6 +75,7 @@
         </div>
     </div>
     <!-- The Modal -->
+    
     <section id="container">
         <ul class="nav nav-tabs">
             <li class="nav-item" id="weekly-tab">
@@ -88,6 +89,9 @@
             </li>
             <li class="nav-item" id="all-tab">
                 <a class="nav-link" data-toggle="tab">전부</a>
+            </li>
+            <li class="nav-item" id="time-table-tab">
+                <a class="nav-link" data-toggle="tab">학원시간표</a>
             </li>
         </ul>
         <article>
@@ -127,6 +131,54 @@
                     <text>일</text>
                     <ul id="weekly-todo-list-sun" class="weekly-todo-list"></ul>
                 </div>
+            </div>
+            <div id="table-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">월</th>
+                          <th scope="col">화</th>
+                          <th scope="col">수</th>
+                          <th scope="col">목</th>
+                          <th scope="col">금</th>
+                          <th scope="col">토</th>
+                          <th scope="col">일</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <th scope="row">10:00~10:30</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>테니스 &#127934;</td>
+                            <td></td>
+                          </tr>
+                        <tr>
+                          <th scope="row">2:30~5:00</th>
+                          <td></td>
+                          <td>영어 &#127374;</td>
+                          <td>수학 &#128208;</td>
+                          <td>영어 &#127374;</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">7:00~9:00</th>
+                          <td></td>
+                          <td></td>
+                          <td>논술 &#128218;</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>  
+                </table>
             </div>
         </article>
     </section>

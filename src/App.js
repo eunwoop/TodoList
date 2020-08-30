@@ -18,6 +18,7 @@ export class App {
         this.editButton = document.getElementById('edit-button');
         this.title = document.getElementById('title');
         this.weeklyView = document.getElementById('weekly-view');
+        this.tableTab = document.getElementById('table-tab');
 
         this.getWeekDom();
 
@@ -80,12 +81,19 @@ export class App {
                 case TAB_TYPE.ALL_TAB:
                 case TAB_TYPE.TODAY_TAB:
                 case TAB_TYPE.TOMOR_TAB:
-                    this.todoListElem.style.visibility = 'visible';
-                    this.weeklyView.style.visibility = 'collapse';
+                    this.todoListElem.style.display = 'block';
+                    this.weeklyView.style.display = 'none';
+                    this.tableTab.style.display = 'none';
                     break;
                 case TAB_TYPE.WEEKLY_TAB:
-                    this.todoListElem.style.visibility = 'collapse';
-                    this.weeklyView.style.visibility = 'visible';
+                    this.todoListElem.style.display = 'none';
+                    this.weeklyView.style.display = '';
+                    this.tableTab.style.display = 'none';
+                    break;
+                case TAB_TYPE.TIME_TABLE_TAB:
+                    this.todoListElem.style.display = 'none';
+                    this.weeklyView.style.display = 'none';
+                    this.tableTab.style.display = 'block';
                     break;
                 default:
                     break;
