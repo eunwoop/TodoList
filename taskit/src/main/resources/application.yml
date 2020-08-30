@@ -6,3 +6,7 @@ spring:
     url: jdbc:mysql://taskit-db.cm5yfi6qhccs.ap-northeast-2.rds.amazonaws.com:3306/taskit
     username: admin
     password: admin!23
+  resources:
+    cache:
+      cachecontrol:
+        no-cache: true
