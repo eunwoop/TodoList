@@ -125,7 +125,10 @@ export class TodoList {
 
     createDeleteButton(data) {
         const deleteButton = document.createElement('button');
-        deleteButton.innerHTML = '삭제';
+        deleteButton.type = "button";
+        deleteButton.class = "btn btn-xs";
+        deleteButton.innerHTML = '<span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span>';
+    
         deleteButton.onclick = (event) => {
             console.log(deleteButton.parentElement);
             this.dataList = removeDataFromArray(this.dataList, data);
