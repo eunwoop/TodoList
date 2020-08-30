@@ -20,16 +20,6 @@ export class TodoInput {
         this.todayButton = document.getElementById('today-button');
         this.tomorButton = document.getElementById('tomor-button');
     
-        addBtn.onclick = function () {
-            modal.style.display = "block";
-        }
-        console.log("weeklyDay: ");
-        console.log(weeklyDay);
-        weeklyDay.forEach((element) => element.onclick = function () {
-            console.log("click weekly day.,..");
-            modal.style.display = "block";
-        });
-
         span.onclick = function () {
             modal.style.display = "none";
         }

@@ -2,6 +2,7 @@ import {sendToServer, updateData, deleteFromServer} from './Api';
 import {isArray, removeDataFromArray} from './Utils';
 import {getDateString, isTomorrow, isToday, getThisWeekDates} from './Date';
 import {TAB_TYPE} from './Tab';
+import { WEEK_STRING, WEEK_STRING_KOR } from './Weekly';
 
 export class TodoList {
     constructor(listElement, weekUlElements, user) {
@@ -10,6 +11,8 @@ export class TodoList {
         this.editMode = false;
         this.user = user;
         this.currentTab = TAB_TYPE.WEEKLY_TAB;
+
+        this.getWeekDivDomArray();
     }
 
     getTotalListLength() {
@@ -107,9 +110,25 @@ export class TodoList {
         });
     }
 
+    getWeekDivDomArray() {
+        const idPrefix = 'day-in-weekly-';
+        this.weekDivElements = [];
+        WEEK_STRING.forEach(element => {
+            this.weekDivElements.push(document.getElementById(idPrefix + element));
+        });
+    }
+
     drawWeeklyTab() {
         console.log("drawWeeklyTab!");
         let weekDates = getThisWeekDates();
+
+        // draw header "24 월"
+        for (let i = 0; i < 7; i++) {
+            const dateText = weekDates[i].substring(8);
+            this.weekDivElements[i].innerHTML = dateText + '   ' + WEEK_STRING_KOR[i];
+        }
+
+        // draw todo list of the day
         let weekTabDataLists = [];
         for (let i = 0; i < 7; i++) {
             weekTabDataLists[i] = [];
@@ -143,17 +162,8 @@ export class TodoList {
     createDueDate(date) {
         const dueDate = document.createElement('span');
         let dateStr = getDateString(date);
-        if (isToday(dateStr)){
-            dateStr = '오늘';
-            dueDate.style.color = "#ffffff";
-            dueDate.style.backgroundColor = "#900d09";
-        } else if (isTomorrow(dateStr)) {
-            dateStr = '내일';
-            dueDate.style.backgroundColor = "#7ebc59";
-        } else {
-            dueDate.style.backgroundColor = "#ffffff";
-        }
-
+        
+        dueDate.style.backgroundColor = "#ffffff";
         dueDate.innerHTML = dateStr;
         dueDate.style.fontSize = "10px";
         dueDate.style.fontWeight = "100";

@@ -29,7 +29,7 @@
             <p id='error-message' style="visibility: hidden;"></p>
         </div>
     </header>
-    
+
     <!-- The Modal -->
     <div id="input-window" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <!-- Modal content -->
@@ -75,7 +75,7 @@
         </div>
     </div>
     <!-- The Modal -->
-    
+
     <section id="container">
         <ul class="nav nav-tabs">
             <li class="nav-item" id="weekly-tab">
@@ -98,55 +98,63 @@
             <button id="edit-button" class="btn btn-danger" style="float:right;">수정</button>
 
             <!-- Trigger/Open The Modal -->
-            <button id="add-todo-button" class="btn btn-success" data-toggle="modal"
-            data-target="#input-window">할일 추가하기</button>
-            
+            <button id="add-todo-button" class="btn btn-success" data-toggle="modal" data-target="#input-window">할일
+                추가하기</button>
+
             <ul id="todo-list"></ul>
-            <div id="weekly-view" class="weekly-container">
-                <div id="mon" class="day-in-weekly">
-                    <text>월</text>
-                    <ul id="weekly-todo-list-mon" class="weekly-todo-list"></ul>
-                </div>
-                <div id="tue" class="day-in-weekly">
-                    <text>화</text>
-                    <ul id="weekly-todo-list-tue" class="weekly-todo-list"></ul>
-                </div>
-                <div id="wed" class="day-in-weekly">
-                    <text>수</text>
-                    <ul id="weekly-todo-list-wed" class="weekly-todo-list"></ul>
-                </div>
-                <div id="thu" class="day-in-weekly">
-                    <text>목</text>
-                    <ul id="weekly-todo-list-thu" class="weekly-todo-list"></ul>
-                </div>
-                <div id="fri" class="day-in-weekly">
-                    <text>금</text>
-                    <ul id="weekly-todo-list-fri" class="weekly-todo-list"></ul>
-                </div>
-                <div id="sat" class="day-in-weekly">
-                    <text>토</text>
-                    <ul id="weekly-todo-list-sat" class="weekly-todo-list"></ul>
-                </div>
-                <div id="sun" class="day-in-weekly">
-                    <text>일</text>
-                    <ul id="weekly-todo-list-sun" class="weekly-todo-list"></ul>
+            <div id="weekly-view">
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </button>
+                <div class="weekly-container">
+                    <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
+                        <text id="day-in-weekly-mon" >월</text>
+                        <ul id="weekly-todo-list-mon" class="weekly-todo-list"></ul>
+                    </div>
+                    <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
+                        <text id="day-in-weekly-tue"  >화</text>
+                        <ul id="weekly-todo-list-tue" class="weekly-todo-list"></ul>
+                    </div>
+                    <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
+                        <text id="day-in-weekly-wed" >수</text>
+                        <ul id="weekly-todo-list-wed" class="weekly-todo-list"></ul>
+                    </div>
+                    <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
+                        <text id="day-in-weekly-thu" >목</text>
+                        <ul id="weekly-todo-list-thu" class="weekly-todo-list"></ul>
+                    </div>
+                    <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
+                        <text id="day-in-weekly-fri" >금</text>
+                        <ul id="weekly-todo-list-fri" class="weekly-todo-list"></ul>
+                    </div>
+                    <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
+                        <text id="day-in-weekly-sat" >토</text>
+                        <ul id="weekly-todo-list-sat" class="weekly-todo-list"></ul>
+                    </div>
+                    <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
+                        <text id="day-in-weekly-sun" >일</text>
+                        <ul id="weekly-todo-list-sun" class="weekly-todo-list"></ul>
+                    </div>
                 </div>
             </div>
             <div id="table-tab">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">월</th>
-                          <th scope="col">화</th>
-                          <th scope="col">수</th>
-                          <th scope="col">목</th>
-                          <th scope="col">금</th>
-                          <th scope="col">토</th>
-                          <th scope="col">일</th>
+                            <th scope="col">#</th>
+                            <th scope="col">월</th>
+                            <th scope="col">화</th>
+                            <th scope="col">수</th>
+                            <th scope="col">목</th>
+                            <th scope="col">금</th>
+                            <th scope="col">토</th>
+                            <th scope="col">일</th>
                         </tr>
-                      </thead>
-                      <tbody>
+                    </thead>
+                    <tbody>
                         <tr>
                             <th scope="row">10:00~10:30</th>
                             <td></td>
@@ -156,28 +164,28 @@
                             <td></td>
                             <td>테니스 &#127934;</td>
                             <td></td>
-                          </tr>
-                        <tr>
-                          <th scope="row">2:30~5:00</th>
-                          <td></td>
-                          <td>영어 &#127374;</td>
-                          <td>수학 &#128208;</td>
-                          <td>영어 &#127374;</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
                         </tr>
                         <tr>
-                          <th scope="row">7:00~9:00</th>
-                          <td></td>
-                          <td></td>
-                          <td>논술 &#128218;</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                            <th scope="row">2:30~5:00</th>
+                            <td></td>
+                            <td>영어 &#127374;</td>
+                            <td>수학 &#128208;</td>
+                            <td>영어 &#127374;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
-                      </tbody>  
+                        <tr>
+                            <th scope="row">7:00~9:00</th>
+                            <td></td>
+                            <td></td>
+                            <td>논술 &#128218;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </article>

@@ -4,6 +4,7 @@ import { TodoInput } from './TodoInput';
 import { getCurrentDate, isToday, isTomorrow } from './Date';
 import { getAll } from './Api';
 import { Tab, TAB_TYPE } from './Tab';
+import { WEEK_STRING } from './Weekly';
 
 async function getDataFromServer() {
     let serverTodoList = await getAll();
@@ -20,8 +21,7 @@ export class App {
         this.weeklyView = document.getElementById('weekly-view');
         this.tableTab = document.getElementById('table-tab');
 
-        this.getWeekDom();
-
+        this.getWeekListDom();
         this.todoInput = new TodoInput();
         this.todoCount = new TodoCount();
         this.todoList = new TodoList(this.todoListElem, this.weekUlElements, user);
@@ -31,10 +31,9 @@ export class App {
         document.querySelector('#greeting').innerHTML = getCurrentDate();
     }
 
-    getWeekDom() {
+    getWeekListDom() {
         const idPrefix = 'weekly-todo-list-';
         this.weekUlElements = [];
-        const WEEK_STRING = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
         WEEK_STRING.forEach(element => {
             this.weekUlElements.push(document.getElementById(idPrefix + element));
         });
