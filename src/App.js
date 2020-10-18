@@ -5,6 +5,7 @@ import { getCurrentDate, isToday, isTomorrow } from './Date';
 import { getAll } from './Api';
 import { Tab, TAB_TYPE } from './Tab';
 import { WEEK_STRING } from './Weekly';
+import { initTables } from './Table';
 
 async function getDataFromServer() {
     let serverTodoList = await getAll();
@@ -46,6 +47,7 @@ export class App {
             // get data from server
             this.todoListData = await getDataFromServer();
             this.todoList.setState(this.todoListData);
+            initTables();
         } catch (e) {
             const failmessage = document.getElementById('error-message');
             failmessage.innerHTML = e;
@@ -60,8 +62,8 @@ export class App {
             this.todoList.render();
             this.todoInput.render();
             this.todoCount.render(this.todoList.getTodayListLength(),
-                    this.todoList.getUnCompleteNum());
-                //setObjectToLocalStorage(todoList.dataList);
+                this.todoList.getUnCompleteNum());
+            //setObjectToLocalStorage(todoList.dataList);
         });
         this.todoInput.setOnNewDataListener(async (inputValue, date) => {
             const newData = {
@@ -76,14 +78,7 @@ export class App {
 
         //TODO: move this to Tab.js
         this.tab.setOnTabClickListener((e, tabType) => {
-            switch(tabType) {
-                case TAB_TYPE.ALL_TAB:
-                case TAB_TYPE.TODAY_TAB:
-                case TAB_TYPE.TOMOR_TAB:
-                    this.todoListElem.style.display = 'block';
-                    this.weeklyView.style.display = 'none';
-                    this.tableTab.style.display = 'none';
-                    break;
+            switch (tabType) {
                 case TAB_TYPE.WEEKLY_TAB:
                     this.todoListElem.style.display = 'none';
                     this.weeklyView.style.display = '';
@@ -115,13 +110,3 @@ export class App {
         })
     }
 }
-
-
-
-//validator test
-// new TodoList(todoElement, null);
-// new TodoList(todoElement, undefined);
-// new TodoList(todoElement, 3);
-// new TodoList(todoElement, [{no: 'textfield'}]);
-// const testTodo = new TodoList(todoElement, [{text: 'Netflix 시청하기',isCompleleted: true,}]);
-// testTodo.setState([{text: 'Netflix 시청하기', isCompleleted: 'hello',}]);
