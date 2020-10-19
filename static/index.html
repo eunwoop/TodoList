@@ -64,12 +64,13 @@
             </li>
         </ul>
         <article>
-            <button id="edit-button" class="btn btn-danger" style="float:right;">수정</button>
-
-            <!-- Trigger/Open The Modal -->
-            <button id="add-todo-button" class="btn btn-success" data-toggle="modal" data-target="#input-window">할일
+            <div id="button-container">
+                <button id="edit-button" class="btn btn-danger" style="float:right;">수정</button>
+                <!-- Trigger/Open The Modal -->
+                <button id="add-todo-button" class="btn btn-success" data-toggle="modal" data-target="#input-window">할일
                 추가하기</button>
-            <hr>
+                <hr>
+            </div>
 
             <ul id="todo-list"></ul>
             <div id="weekly-view">
@@ -109,6 +110,7 @@
                         <ul id="weekly-todo-list-sun" class="weekly-todo-list"></ul>
                     </div>
                 </div>
+                <hr>
             </div>
             <div id="table-tab">
                 <table class="table table-bordered">

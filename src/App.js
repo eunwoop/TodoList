@@ -21,6 +21,7 @@ export class App {
         this.title = document.getElementById('title');
         this.weeklyView = document.getElementById('weekly-view');
         this.tableTab = document.getElementById('table-tab');
+        this.buttonContainer = document.getElementById('button-container');
 
         this.getWeekListDom();
         this.todoInput = new TodoInput();
@@ -76,18 +77,19 @@ export class App {
             console.log(this.todoList);
         });
 
-        //TODO: move this to Tab.js
         this.tab.setOnTabClickListener((e, tabType) => {
             switch (tabType) {
                 case TAB_TYPE.WEEKLY_TAB:
                     this.todoListElem.style.display = 'none';
                     this.weeklyView.style.display = '';
                     this.tableTab.style.display = 'none';
+                    this.buttonContainer.style.display = 'block';
                     break;
                 case TAB_TYPE.TIME_TABLE_TAB:
                     this.todoListElem.style.display = 'none';
                     this.weeklyView.style.display = 'none';
                     this.tableTab.style.display = 'block';
+                    this.buttonContainer.style.display = 'none';
                     break;
                 default:
                     break;
