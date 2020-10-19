@@ -37,11 +37,13 @@ export function getDateString(dateStr) {
     return dateStr.substring(0, 10);
 }
 
-export function getThisWeekDates() {
-    let startOfWeek = moment().startOf('isoWeek').subtract(1, 'd');
+export function getThisWeekDates(diff) {
+    let startOfCurrentWeek = moment().startOf('isoWeek').subtract(1, 'd');
+    startOfCurrentWeek.add(7 * diff, 'd');
+    
     let thisWeekDay = [];
     for (let i = 0; i < 7; i++) {
-        thisWeekDay.push(startOfWeek.add(1, 'd').format('YYYY-MM-DD'));
+        thisWeekDay.push(startOfCurrentWeek.add(1, 'd').format('YYYY-MM-DD'));
     }
     return thisWeekDay;
 }

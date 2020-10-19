@@ -11,8 +11,28 @@ export class TodoList {
         this.editMode = false;
         this.user = user;
         this.currentTab = TAB_TYPE.WEEKLY_TAB;
+        this.diffFromCurrentWeek = 0; // 0 : current 1: +1 week -1: -1 week.
 
+        this.setMoveWeekOnClick();
         this.getWeekDivDomArray();
+    }
+
+    setMoveWeekOnClick() {
+        document.getElementById('prev-week-button').onclick = () => {
+            this.diffFromCurrentWeek--;
+            console.log('diff: ' + this.diffFromCurrentWeek);
+            this.render();
+        }
+        document.getElementById('next-week-button').onclick = () => {
+            this.diffFromCurrentWeek++;
+            console.log('diff: ' + this.diffFromCurrentWeek);
+            this.render();
+        }
+        document.getElementById('this-week-button').onclick = () => {
+            this.diffFromCurrentWeek = 0;
+            console.log('diff: ' + this.diffFromCurrentWeek);
+            this.render();
+        }
     }
 
     getTotalListLength() {
@@ -64,27 +84,7 @@ export class TodoList {
         }
 
         let currentTabDataList;
-        switch(this.currentTab) {
-            case TAB_TYPE.ALL_TAB:
-                currentTabDataList = this.dataList;
-                this.drawList(currentTabDataList);
-                break;
-            case TAB_TYPE.TODAY_TAB:
-                currentTabDataList = this.dataList.filter(
-                    element => isToday(element.dueDate));
-                this.drawList(currentTabDataList);
-                break;
-            case TAB_TYPE.TOMOR_TAB:
-                currentTabDataList = this.dataList.filter(
-                    element => isTomorrow(element.dueDate));
-                this.drawList(currentTabDataList);
-                break;
-            case TAB_TYPE.WEEKLY_TAB:
-                this.drawWeeklyTab();
-                break;
-            default:
-                break;
-        }
+        this.drawWeeklyTab();
     }
 
     drawList(currentTabDataList, listElement) {
@@ -120,11 +120,11 @@ export class TodoList {
 
     drawWeeklyTab() {
         console.log("drawWeeklyTab!");
-        let weekDates = getThisWeekDates();
+        let weekDates = getThisWeekDates(this.diffFromCurrentWeek);
 
-        // draw header "24 월"
+        // draw header "10-24 월"
         for (let i = 0; i < 7; i++) {
-            const dateText = weekDates[i].substring(8);
+            const dateText = weekDates[i].substring(5);
             this.weekDivElements[i].innerHTML = dateText + '   ' + WEEK_STRING_KOR[i];
         }
 

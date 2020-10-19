@@ -135,3 +135,9 @@ article ul {
     margin: 0;
     padding: 3px;
   }
+
+  .week-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

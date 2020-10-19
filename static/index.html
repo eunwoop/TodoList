@@ -74,12 +74,17 @@
 
             <ul id="todo-list"></ul>
             <div id="weekly-view">
-                <button type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                </button>
+                <div class="week-button-container">
+                    <button type="button" id="prev-week-button" class="btn btn-default" style="height: 30px;" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" id="this-week-button" class="btn btn-default" style="height: 30px;" aria-label="Left Align">
+                        <span>이번주</span>
+                    </button>
+                    <button type="button" id="next-week-button" class="btn btn-default" style="height: 30px;" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                    </button>
+                </div>
                 <div class="weekly-container">
                     <div class="day-in-weekly" data-toggle="modal" data-target="#input-window">
                         <text id="day-in-weekly-mon" >월</text>
