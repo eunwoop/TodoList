@@ -10,11 +10,7 @@ export class TodoInput {
         const addBtn = document.getElementById("add-todo-button");
         const weeklyDay = document.querySelectorAll('.day-in-weekly');
         const span = document.getElementsByClassName("close")[0];
-
-        const dateButton = document.getElementById('date-button');
-        const yoilButton = document.getElementById('yoil-button');
-
-        this.yoilCheck = document.getElementById('yoil-check');
+        
         this.dateCheck = document.getElementById('date-check');
         this.calendar = document.getElementById('calendar');
         this.todayButton = document.getElementById('today-button');
@@ -29,27 +25,6 @@ export class TodoInput {
             }
         }
         this.addEnterListener();
-
-        dateButton.onclick = () => {
-            if (this.dateCheck.style.visibility === 'visible') {
-                this.dateCheck.style.visibility = 'collapse';
-            } else {
-                this.dateCheck.style.visibility = 'visible';
-                if (this.yoilCheck.style.visibility === 'visible') {
-                    this.yoilCheck.style.visibility = 'collapse';
-                }
-            }
-        }
-        yoilButton.onclick = () => {
-            if (this.yoilCheck.style.visibility === 'visible') {
-                this.yoilCheck.style.visibility = 'collapse';
-            } else {
-                this.yoilCheck.style.visibility = 'visible';
-                if (this.dateCheck.style.visibility === 'visible') {
-                    this.dateCheck.style.visibility = 'collapse';
-                }
-            }
-        }
 
         this.todayButton.onclick = (e) => {
             this.tomorButton.className = this.tomorButton.className.replace(' active', '');
