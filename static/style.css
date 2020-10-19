@@ -27,7 +27,6 @@ body {
   border: none;
   font-size: 15px;
   width: 100px;
-
   flex-grow: 1;
 }
 
@@ -37,7 +36,7 @@ body {
 }
 
 p {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 /* Container for flexboxes */
@@ -47,7 +46,6 @@ section {
   display: center;
   -webkit-flex-direction: column;
   flex-direction: column;
-  
 }
 
 #container {
@@ -91,8 +89,6 @@ article ul {
       width: 80%; /* Could be more or less, depending on screen size */
     }
 }
-
-
   
   /* Modal Content/Box */
   .modal-content {
@@ -140,4 +136,9 @@ article ul {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .rowColumn {
+    font-size: 14px;
+    margin: 0 0 0;
   }
